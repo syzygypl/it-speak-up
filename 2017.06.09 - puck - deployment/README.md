@@ -39,7 +39,7 @@
  * Opsworks parameters
  * Heroku settings
 
-## Od `sync2.php` od Continuous Delivery
+## Od `sync2.php` do Continuous Delivery
 
 Our deployment strategies are all over the board. Once there was a sync2.php script on the production server, ;) 
 some other time it was a git pull & make combo, and in some other case it was an opsworsk app with chef scripts.
