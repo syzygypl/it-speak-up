@@ -1,0 +1,234 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>reveal.js</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <p>
+            <h2>Static vs dynamic typing</h2></p>
+        </section>
+        <section>
+            <p><b>Statically typed language</b> - A language is statically typed if the type of a variable is known at
+                compile
+                time. (c) Stackoverflow</p>
+            <p><b>Dynamically typed language</b> - A language is dynamically typed if the type of value held by a
+                variable is
+                know in run-time. <br> (c) Guess who</p>
+        </section>
+        <section>
+            <p>
+            <h3>Examples:</h3></p>
+            <br>
+            <ul>
+                <li> Static: C, C++, Java</li>
+                <li> Dynamic: Perl, Ruby, Python, Javascript, PHP</li>
+                <li> Untyped: assembly</li>
+            </ul>
+        </section>
+        <section>
+            <p><h4>Usually types system is associated with programming language type</h4></p>
+            <br>
+            <p>static -> static language</p>
+            <p>dynamic -> dynamic language (scripting)</p>
+        </section>
+        <section>
+            <h3>Main features of dynamic typing</h3>
+            <ul>
+                <li>
+                    <p>No compilation
+                        <small>You don’t have to compile code you can just run it.(In case of static language you can&nbsp;reduce
+                            compile time with `incremental compilation`)
+                        </small>
+                    </p>
+                </li>
+                <li>
+                    <p>Can pretend static
+                        <small>There are some&nbsp;techniques like `JsDoc` that can increase static&nbsp;analysis
+                            purpose and IDE support.&nbsp;
+                        </small>
+                    </p>
+                </li>
+                <li>
+                    <p>Faster coding <br>
+                        <small>You can do whatever you want. And write code faster.</small>
+                    </p>
+                </li>
+                <li>
+                    <p>Easy to understand <br>
+                        <small>not sure...</small>
+                    </p>
+                </li>
+            </ul>
+        </section>
+        <section>
+            <h3>Main features of static typing</h3>
+            <ul>
+                <li>
+                    <p>You cannot change variable type
+                        <small>once you declare `string` it will be `string` till the end. Assigning value of another
+                            type will lead to Exception.
+                        </small>
+                    </p>
+                </li>
+                <li>
+                    <p>Functions have contracts
+                        <small>(strictly defined input parameters and output types) which gives us better understanding
+                            about what function does. Also it gives us so called `parameter overloading` which may be
+                            useful sometimes. Python offers overloading mechanism too because of it strict typing.
+                        </small>
+                    </p>
+                </li>
+                <li>
+                    <p>May also offer `type inference`
+                        <small>mechanism of determining variable type in compile time by type of&nbsp;initially assigned
+                            value. Which may reduce a bit code producing time and remove unnecessary boilerplate.
+                        </small>
+                    </p>
+                </li>
+            </ul>
+        </section>
+        <section>
+            <h3>But do we really can write code faster?</h3><br>
+        </section>
+        <section>
+            <h3>Usually yes, but sometimes no.</h3><br>
+        </section>
+        <section>
+            <h3>It is easy to understand why we can write code faster in dynamically typed language.</h3>
+            <br>
+            <p>But what can cause faster development in case of statically typed language?</p>
+        </section>
+        <section>
+            <ul>
+                <li>
+                    <p>Fewer bugs in produced code
+                        <small>You know about wrong assignments, function calls,&nbsp;returns immediately after
+                            compilation or static&nbsp;analysis. Static analysis can be also applicable to&nbsp;dynamically
+                            typed languages but have no such&nbsp;great effect.&nbsp;
+                        </small>
+                    </p>
+                </li>
+                <li>
+                    <p>You&nbsp;don’t need to know the scope
+                        <small>Functions always have strictly declared inputs and output. You don’t have to trace
+                            function calls to understand what parameters you got and what you have to do.
+                        </small>
+                    </p>
+                </li>
+                <li>
+                    <p>Writing unit test for static typing takes less time
+                        <small>Here we just have to create more test in case of `secure` code. Again with static typing&nbsp;compiler
+                            will do the job.
+                        </small>
+                    </p>
+                </li>
+                <li>
+                    <p>Writing secure code is almost&nbsp;impossible or cost a lot of lines
+                        <small>
+                            If you creating component that have to be secure (sometimes you have to in case of library
+                            or business requirements) you have to handle all possible input types and time of producing
+                            will dramatically increase.
+                            With static typing you code is secure by default (don’t miss with secure business logic).
+                        </small>
+                    </p>
+                </li>
+            </ul>
+        </section>
+        <section>
+            <h3>Statistics Time</h3>
+            <ul>
+                <li>
+                    <small>Some languages have a greater association with defects (bugs) than other languages, although
+                        the effect is small. (Closure, Scala are winning one)
+                    </small>
+                </li>
+                <br>
+                <li>
+                    <small>There is a small but significant relationship between language class and defects. Functional
+                        languages are associated with fewer defects than either procedural or scripting languages.
+                        (Functional-Static-Strict is the best)
+                    </small>
+                </li>
+                <br>
+                <li>
+                    <small>There is no general relationship between application domain and language defect proneness.
+                    </small>
+                </li>
+                <br>
+                <li>
+                    <small>Defect types are strongly associated with languages; some defect type like memory errors and
+                        concurrency errors also depend on language primitives. Language matters more for specific
+                        categories than it does for defects overall.
+                    </small>
+                </li>
+                <p>
+                <center><a
+                        href="http://delivery.acm.org/10.1145/3130000/3126905/p91-ray.pdf?ip=77.79.213.50&id=3126905&acc=OPEN&key=4D4702B0C3E38B35%2E4D4702B0C3E38B35%2E4D4702B0C3E38B35%2E6D218144511F3437&__acm__=1516891343_a156d06d6b63a111f51d85ce7128eeb1">sources</a>
+                </center>
+                </p>
+            </ul>
+        </section>
+        <section>
+            <h3>Some words about JavaScript</h3>
+        </section>
+        <section>
+            <h3>Javascript is not ready for nowadays web application.&nbsp;</h3>
+            <p>There are no:</p>
+            <ul>
+                <li>Strict typing</li>
+                <li>Static typing</li>
+                <li>Static scopes (closures are bad)</li>
+                <li>Complete OOP/Functional paradigms</li>
+            </ul>
+        </section>
+        <section>
+            <h3>
+                Lets do something with it ...
+            </h3>
+        </section>
+    </div>
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+    // More info about config & dependencies:
+    // - https://github.com/hakimel/reveal.js#configuration
+    // - https://github.com/hakimel/reveal.js#dependencies
+    Reveal.initialize({
+        dependencies: [
+            {src: 'plugin/markdown/marked.js'},
+            {src: 'plugin/markdown/markdown.js'},
+            {src: 'plugin/notes/notes.js', async: true},
+            {
+                src: 'plugin/highlight/highlight.js', async: true, callback: function () {
+                    hljs.initHighlightingOnLoad();
+                }
+            }
+        ]
+    });
+</script>
+</body>
+</html>
