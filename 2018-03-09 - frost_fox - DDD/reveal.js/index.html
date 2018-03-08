@@ -1,0 +1,287 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>reveal.js</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/white.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <style>
+        .no-border {
+            height: 100%;
+            width: 100%;
+            border: none !important;
+            box-shadow: none !important;
+        }
+    </style>
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <p>
+            <h1>DDD</h1>
+            </p>
+        </section>
+        <section>
+            <p>
+            <h2>DDD (Domain Driven Design)</h2> - is an approach or set of techniques of modeling, building and
+            maintaining domain logic intensive applications.</p>
+        </section>
+        <section>
+            <p>
+            <h3>Domain</h3>
+            sphere of knowledge of particular problem that we solve in our application. (Like banking
+            accounting, ship communications, or even programming - depends on application we’re writing)
+            </p>
+        </section>
+        <section>
+            <p>
+            <h3>Model</h3>
+            reflection of the domain in our application. Abstraction layer created by programmers to
+            represent the domain.
+            </p>
+        </section>
+        <section>
+            <p>
+            <h3>Ubiquitous language</h3>
+            a language structured around the domain model and used widely across the team.
+            </p>
+        </section>
+        <section>
+            <p>
+            <h2>The Building blocks of DDD</h2></p>
+        </section>
+        <section>
+            <h3>Entity</h3>
+            <ul>
+                <li>
+                    <p>Represents domain object that has identity</p>
+                </li>
+                <li>
+                    <p>The purpose is to represent complex variable with lifecycle and persistance</p>
+                </li>
+                <li>
+                    <p>Must be mutable to perform transitions between states</p>
+                </li>
+                <li>
+                    <p>Should be always in valid (for domain) state</p>
+                </li>
+                <li>
+                    <p>Like User which can be identified by email</p>
+                </li>
+            </ul>
+        </section>
+        <section>
+            <h3>Value Object</h3>
+            <ul>
+                <li>
+                    <p>Represents domain object that has no identity</p>
+                </li>
+                <li>
+                    <p>The purpose is to be represent value</p>
+                </li>
+                <li>
+                    <p>Must be immutable to protect from sharing issue</p>
+                </li>
+                <li>
+                    <p>Should be always in valid (for domain) state</p>
+                </li>
+                <li>
+                    <p>Like Address which is identifiable</p>
+                </li>
+            </ul>
+        </section>
+        <section>
+            <img src="entity_vo.svg" class="no-border">
+        </section>
+        <section>
+            <h3>Aggregate</h3>
+            <ul>
+                <li>
+                    <p>Represents cluster of domain objects that can be treated as a single unit</p>
+                </li>
+                <li>
+                    <p>The purpose is maintaining invariations and limit complexity</p>
+                </li>
+                <li>
+                    <p>Have so called “aggregate root”</p>
+                </li>
+            </ul>
+        </section>
+        <section>
+            <h3>General points about objects</h3>
+            <ul>
+                <li>
+                    <p>Avoid traversal reference</p>
+                </li>
+                <li>
+                    <p>Use constrained associations</p>
+                </li>
+                <li>
+                    <p>Sometimes Entity Sometimes VO ...</p>
+                </li>
+            </ul>
+        </section>
+        <section>
+            <h3>Factory</h3>
+            <ul>
+                <li>
+                    <p>Responsible for creating Entities and VO</p>
+                </li>
+                <li>
+                    <p>The purpose is maintaining invariations and limit complexity</p>
+                </li>
+                <li>
+                    <p>Useful in case of complex aggregates</p>
+                </li>
+                <li>
+                    <p>Object with many relations should not be responsible for creating itself (imagine self-created
+                        engine)</p>
+                </li>
+            </ul>
+        </section>
+        <section>
+            <h3>Repository</h3>
+            <ul>
+                <li>
+                    <p>Responsibility of fetching and storing objects in persistence layer (DB, external API)</p>
+                </li>
+                <li>
+                    <p>Repository could be created only for aggregate root or standalone entity</p>
+                </li>
+                <li>
+                    <p>Repository can use factories to maintain invariations</p>
+                </li>
+                <li>
+                    <p>Almost always has method to get by unique identifier</p>
+                </li>
+            </ul>
+        </section>
+        <section>
+            <h3>Service</h3>
+            <ul>
+                <li>
+                    <p>Represents available actions in the domain</p>
+                </li>
+                <li>
+                    <p>Can be query or command</p>
+                </li>
+                <li>
+                    <p>Like banking transaction service responsible for transferring money between accounts</p>
+                </li>
+            </ul>
+        </section>
+        <section>
+            <h3>Layered architecture</h3>
+            <img src="layers.png" class="no-border">
+            <p>If your project is relatively small and contains then you can consider using "Smart UI” antipattern</p>
+        </section>
+        <section>
+            <h2>Supple design</h2>
+        </section>
+        <section>
+            <h3>Intention-revealing interface</h3>
+            <p>If a developer must consider the implementation of a component in order to use it, the value of encapsulation is lost.</p>
+        </section>
+        <section>
+            <h3>Side-effect free functions</h3>
+        </section>
+        <section>
+            <h3>Assertions</h3>
+        </section>
+        <section>
+            <h3>Closure of operation</h3>
+        </section>
+        <section>
+            <h3>Declarative design</h3>
+        </section>
+        <section>
+            <h3>Making implicit concepts explicit</h3>
+        </section>
+        <section>
+            <h3>Documentation</h3>
+            <ul>
+                <li>
+                    <p>Model that describes intentions</p>
+                </li>
+                <li>
+                    <p>Test to describe use-cases</p>
+                </li>
+                <li>
+                    <p>Ubiquitous language to maintain naming integrity</p>
+                </li>
+                <li>
+                    <p>Domain Vision Statement</p>
+                </li>
+            </ul>
+        </section>
+        <section>
+            <h3>There are also:</h3>
+            <ul>
+                <li>
+                    <p>Anti-corruption layer</p>
+                </li>
+                <li>
+                    <p>Continuous refinement</p>
+                </li>
+                <li>
+                    <p>Road toward deeper insight</p>
+                </li>
+                <li>
+                    <p>Domain experts</p>
+                </li>
+                <li>
+                    <p>Multiple models and contexts</p>
+                </li>
+                <li>
+                    <p>Model Layering</p>
+                </li>
+                <li>
+                    <p>Abstract Core, Core Domain, Segregated Core</p>
+                </li>
+                <li>
+                    <p>Generic subdomain, Highlighted Core</p>
+                </li>
+
+            </ul>
+        </section>
+    </div>
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+    // More info about config & dependencies:
+    // - https://github.com/hakimel/reveal.js#configuration
+    // - https://github.com/hakimel/reveal.js#dependencies
+    Reveal.initialize({
+        dependencies: [
+            {src: 'plugin/markdown/marked.js'},
+            {src: 'plugin/markdown/markdown.js'},
+            {src: 'plugin/notes/notes.js', async: true},
+            {
+                src: 'plugin/highlight/highlight.js', async: true, callback: function () {
+                    hljs.initHighlightingOnLoad();
+                }
+            }
+        ]
+    });
+</script>
+</body>
+</html>
