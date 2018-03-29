@@ -1,0 +1,189 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>reveal.js</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/white.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <style>
+        .no-border {
+            height: 100%;
+            width: 100%;
+            border: none !important;
+            box-shadow: none !important;
+        }
+    </style>
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h1>Tests</h1>
+        </section>
+        <section>
+            <h3>
+                What’s the main qualities we want to see in our software?
+            </h3>
+        </section>
+        <section>
+            <h3>Reliability</h3>
+            <p>
+                It has to be working software, so it can perform it’s main purpose.
+            </p>
+        </section>
+        <section>
+            <h3>Maintainability</h3>
+            <p>
+                It has to have good inner quality, so we can quickly react to changes.
+            </p>
+        </section>
+        <section>
+            <h3>If our software will be reliable</h3>
+            <ul>
+                <li>our client will have what he expects (and he will be happy)</li>
+                <li>we will not do debugging (and we will be happy)</li>
+            </ul>
+        </section>
+        <section>
+            <h2>If our software will be maintainable</h2>
+            <ul>
+                <li>our client can fulfill his need (and he will be happy)</li>
+                <li>we can write code as at the begging of the project (and we will be happy)</li>
+            </ul>
+        </section>
+        <section>
+            <h3>We will not fall into maintenance burden</h3>
+        </section>
+        <section>
+            <h3>How we can fulfill this qualities?</h3>
+            <ul>
+                <li>
+                    <p>better tools (frameworks, libraries) that are more reliable than our code.</p>
+                </li>
+                <li>
+                    <p>static/strict typing or static analysis to decrease level of programmatic errors.</p>
+                </li>
+                <li>
+                    <p>some techniques SOLID, DRY to write better code.</p>
+                </li>
+                <li>
+                    <p>some architecture to define layers of responsibility.</p>
+                </li>
+                <li>
+                    <p>code review or pair programming to decrease our architectural or logical errors.</p>
+                </li>
+            </ul>
+        </section>
+        <section>
+            <h3>But that’s all not really solves the problem.</h3>
+        </section>
+        <section>
+            <h3>Tests</h3>
+            <ul>
+                <li>
+                    <p>Quick feedback loop.</p>
+                </li>
+                <li>
+                    <p>Test thing that are far away of UI.</p>
+                </li>
+                <li>
+                    <p>Describing what production code does.</p>
+                </li>
+                <li>
+                    <p>Force you to fix problems in code (when used in deploying lifecycle)</p>
+                </li>
+                <li>
+                    <p>Simplifies refactoring.</p>
+                </li>
+                <li>
+                    <p>Reduces debugging time.</p>
+                </li>
+                <li>
+                    <p>Clarifies code problems.</p>
+                </li>
+            </ul>
+        </section>
+        <section>
+            <h3>TDD</h3>
+        </section>
+        <section>
+            <h3>Three rules of TDD</h3>
+            <ul>
+                <li>
+                    <p>Don’t write single line of production code without writing failing acceptance test.</p>
+                </li>
+                <li>
+                    <p>Don’t write any acceptance test before making production code pass test previous.</p>
+                </li>
+                <li>
+                    <p>Don’t write any code additional code after passing acceptance test.</p>
+                </li>
+            </ul>
+        </section>
+        <section>
+            <h3>That Keeps You in TDD cycle</h3>
+            <img src="cycle.png" class="no-border">
+        </section>
+        <section>
+            <img src="quality.jpg" class="no-border">
+        </section>
+        <section>
+            <h3>Profit</h3>
+            <ul>
+                <li>
+                    <p>More iterative focused approach</p>
+                </li>
+                <li>
+                    <p>Clarifies design intentions</p>
+                </li>
+                <li>
+                    <p>Always tested code</p>
+                </li>
+                <li>
+                    <p>Change monotonic test activity to design</p>
+                </li>
+            </ul>
+        </section>
+        <section>
+            <h3></h3>
+        </section>
+    </div>
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+    // More info about config & dependencies:
+    // - https://github.com/hakimel/reveal.js#configuration
+    // - https://github.com/hakimel/reveal.js#dependencies
+    Reveal.initialize({
+        dependencies: [
+            {src: 'plugin/markdown/marked.js'},
+            {src: 'plugin/markdown/markdown.js'},
+            {src: 'plugin/notes/notes.js', async: true},
+            {
+                src: 'plugin/highlight/highlight.js', async: true, callback: function () {
+                    hljs.initHighlightingOnLoad();
+                }
+            }
+        ]
+    });
+</script>
+</body>
+</html>
