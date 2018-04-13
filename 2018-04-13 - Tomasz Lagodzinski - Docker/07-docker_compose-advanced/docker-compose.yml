@@ -1,0 +1,15 @@
+version: '2'
+services:
+    nodejs:
+      image: simple:latest
+    web:
+      image: nginx:alpine
+      volumes:
+        - ./common/nginx.conf:/etc/nginx/nginx.conf
+      ports:
+        - "8080:80"
+      environment:
+        - NGINX_PORT=80
+      command: nginx -g 'daemon off;'
+      links:
+        - nodejs
