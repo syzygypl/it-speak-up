@@ -1,0 +1,93 @@
+version: "3"
+
+services:
+    app1: &www
+        build: .docker/php
+        command: |
+            bash -c '
+              [[ -n "${XDEBUG:-""}" ]] && echo "zend_extension=xdebug.so" > /usr/local/etc/php/php-cli-server.ini
+              app/console server:run 0.0.0.0:80
+            '
+
+        working_dir: /app
+        volumes:
+            - app:/app:nocopy
+            - composer:/home/composer
+            - ./.docker/php/php.ini:/usr/local/etc/php/conf.d/99-project.ini
+
+        external_links:
+            - app2
+
+        labels:
+            io.szg.dev.commands: php composer phpunit app1
+
+        environment: &default_www_env
+            APP_NAME: app1
+
+    app2:
+        <<: *www
+        environment:
+            <<: *default_www_env
+            APP_NAME: app2
+        labels:
+            io.szg.dev.commands: php composer app2
+
+    app3:
+        <<: *www
+        environment:
+            <<: *default_www_env
+            APP_NAME: app3
+        labels:
+            io.szg.dev.commands: php composer app3
+
+    bs.app1: &browsersync
+        build: .docker/php
+        command: gulp browser-sync --proxy http://backend
+        working_dir: /app
+        ports:
+          - 3000
+        links:
+          - www:backend
+        volumes:
+            - app:/app:nocopy
+            - npm:/home/npm
+
+        links:
+          - app1:backend
+
+        environment: &default_node_env
+            PORT: 3000
+            DOCKER: 1
+            YARN_CACHE_FOLDER: "/home/npm/.yarn_cache"
+            PATH: "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/app/node_modules/.bin"
+            NODE_HOME: "/home/npm"
+            BACKEND_URL: "http://backend"
+            APP_NAME: bobovita
+
+        labels:
+            traefik.port: "3000"
+            io.szg.dev.commands: node yarn npm gulp
+
+    bs.app2:
+        <<: *browsersync
+        environment:
+            <<: *default_node_env
+            APP_NAME: app2
+        links:
+          - app2:backend
+
+    bs.app3:
+        <<: *browsersync
+        environment:
+            <<: *default_node_env
+            APP_NAME: app3
+        links:
+          - app3:backend
+
+volumes:
+    app:
+      driver: local
+    composer:
+      driver: local
+    npm:
+      driver: local
