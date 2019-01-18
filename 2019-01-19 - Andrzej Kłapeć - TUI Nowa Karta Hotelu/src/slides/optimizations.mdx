@@ -1,0 +1,110 @@
+import { CodeSurfer } from 'mdx-deck-code-surfer';
+import { Image } from '../components/Image';
+import { Video } from '../components/Video';
+
+# Optimizations
+
+---
+
+## Scrolling performance
+
+```notes
+- na pewnym etapie prac zauwazylismy, ze scrollowanie karty hotelu nie nalezy do plynnych
+- uwaga: screenshoty z env development, na production skala problemu była mniejsza
+```
+
+---
+
+<Image name="scrolling-before" />
+
+---
+
+<Image name="reconciliation" />
+
+```notes
+- reconciliation - mechanizm okreslajacy jak efektywnie zaktualizowac DOM w reakcji na ponowny render komponentu
+```
+
+---
+
+> Even though React only updates the changed DOM nodes, **re-rendering still
+> takes some time**. In many cases it’s not a problem, but if the slowdown is
+> noticeable, you can speed all of this up by overriding the lifecycle function
+> **shouldComponentUpdate**, which is triggered before the re-rendering process
+> starts.
+
+```notes
+- React robi to sprytnie, jego algorytm wie co faktycznie sie zmienilo miedzy re-renderami
+- mimo wszystko re-rendery moga byc obciazajace
+- poprawnie zaimplementowany shouldComponentUpdate moze temu zaradzic
+```
+
+---
+
+<CodeSurfer
+  code={require('!raw-loader!../snippets/updateOnPropsChange')}
+  steps={[{}, { lines: [2] }, { range: [6, 8] }]}
+/>
+
+```notes
+- pureComponent porównuje "płytko" (shallow comparison)
+```
+
+---
+
+<Image name="scrolling-after" />
+
+---
+
+<Video name="awesome" />
+
+---
+
+## Google PageSpeed Insights (Lighthouse)
+
+---
+
+<Image name="perf-before-psi" />
+
+```notes
+- od tego zaczelismy, wyniki byly bardzo rozchwiane - czasem nawet byl to 1 pkt
+- glownym problemem - brak GZIPa
+- skakanie tresci w trakcie ladowania
+- ponad 4k node'ow w DOMie
+```
+
+---
+
+<Image name="perf-before-gzip" />
+
+```notes
+- samo wlaczenie gzipa, wyniki rowniez rozne - od 37 do 43
+- teraz najwiekszym problemem preload zapytan po kluczowe assety
+- brak "leniwego wczytywania" obrazkow
+- niewidoczne tresci do momentu wczytania fontu
+```
+
+---
+
+<Image name="perf-after-gtm" />
+
+```notes
+- optymalizacje frontendowe + wlaczenie gzipa (bo powiedzmy sobie szczerze, to standard)
+- wydzielilismy dodatkowe chunki i asynchroniczne je wczytujemy, lazy-load obrazkow, detekcja urzadzenia na serwerze, renderowanie komponentow pod ten typ urzadzenia, ponowne sprawdzenie juz na kliencie (gdyby detekcja na serwerze nas zawiodla)
+- nic nie skacze na pierwszym foldzie podczas ladowania
+- tresci widoczne od samego poczatku (font-display: swap)
+- korzystamy z tagu <link rel="preload", ktory umieszczono wysoko w headzie sprawia ze przegladarka pobiera okreslone zasoby z najwyzszym priorytetem nawet zanim parsujac DOM natrafi na nie
+- pozostaje najwiekszym problemem - czas wykonywania skryptow, naglowki cache'owania zasobow
+```
+
+---
+
+<Image name="chunks" />
+
+---
+
+<Image name="perf-after-nogtm" />
+
+---
+
+<Video name="progress" />

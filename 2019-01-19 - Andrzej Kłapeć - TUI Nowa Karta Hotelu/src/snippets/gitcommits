@@ -1,0 +1,3 @@
+> git rev-list --all --no-merges --count
+
+1032

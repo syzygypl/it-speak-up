@@ -1,0 +1,3 @@
+> find . -path ./node_modules -prune -o -type f \
+\( -name "*test.js" -o -path "*/__tests__/*.js" \) | wc -l
+118

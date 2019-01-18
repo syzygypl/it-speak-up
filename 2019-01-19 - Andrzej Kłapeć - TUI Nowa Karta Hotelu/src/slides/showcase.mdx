@@ -1,0 +1,361 @@
+import { CodeSurfer } from 'mdx-deck-code-surfer';
+import { Image } from '../components/Image';
+import { Video } from '../components/Video';
+
+# Technical showcase
+
+---
+
+<Image name="cra" />
+
+```notes
+- cra: komplet skryptów i konfiguracji webpacka, babela
+- pozwolił nam na wykorzystanie fajnych, nowych rozwiązań
+```
+
+---
+
+<CodeSurfer
+  code={require('!raw-loader!../snippets/asyncAwait.js')}
+  title="async/await"
+  steps={[
+    {},
+    {
+      tokens: {
+        2: [5],
+        4: [5],
+      },
+    },
+  ]}
+/>
+
+---
+
+<CodeSurfer
+  code={require('!raw-loader!../snippets/classFields.js')}
+  title="Class field declarations"
+  steps={[
+    {},
+    {
+      range: [2, 12],
+    },
+    {
+      range: [14, 19],
+    },
+    {
+      range: [21, 23],
+    },
+  ]}
+/>
+
+```notes
+- pola statyczne (moga tez byc metody)
+- pola zwiazane z instancja, w tym state (w tym przypadku nie ma potrzeby aby ta klasa miala konstruktor)
+- metody zwiazane z instancja - nie ma potrzeby bindowania metod w konstruktorze
+```
+
+---
+
+<CodeSurfer
+  code={require('!raw-loader!../snippets/intersectionObserver.js')}
+  title="IntersectionObserver"
+  steps={[
+    {},
+    {
+      lines: [1],
+    },
+    {
+      range: [20, 26],
+    },
+    {
+      lines: [22],
+    },
+    {
+      range: [6, 14],
+    },
+    {
+      lines: [10],
+    },
+    {
+      lines: [12],
+    },
+  ]}
+/>
+
+```notes
+- obserwowanie czy dany element znajduje sie w viewporcie
+```
+
+---
+
+<Video name="intersectionobserver" />
+
+---
+
+<Image name="caniuse-intersectionobserver" />
+
+---
+
+<CodeSurfer
+  code={require('!raw-loader!../snippets/fontDisplay.css')}
+  title="CSS font-rendering controls"
+  steps={[
+    {},
+    {
+      lines: [8],
+    },
+  ]}
+/>
+
+```notes
+- wyswietlenie fallbackowego fontu na czas ladowania tego wlasciwego
+```
+
+---
+
+<Image name="lighthouse-fonts" />
+
+---
+
+<Video name="fontdisplay-before" />
+
+---
+
+<Video name="fontdisplay-after" />
+
+---
+
+<Image name="caniuse-fontdisplay" />
+
+---
+
+<CodeSurfer
+  code={require('!raw-loader!../snippets/requestIdleCallback')}
+  title="requestIdleCallback"
+  steps={[
+    {},
+    {
+      lines: [7],
+    },
+    {
+      lines: [8],
+    },
+    {
+      lines: [10],
+    },
+  ]}
+/>
+
+---
+
+<Image name="caniuse-requestIdleCallback" />
+
+```notes
+- kolejkowanie funkcji by zostala wywolana wtedy gdy przegladarka "odpoczywa"
+```
+
+---
+
+<Image name="redux" />
+
+```notes
+- redux jako globalny store; dane związane z danym komponentem co do których mamy pewność,
+ ze ich nigdzie indziej nie wykorzystamy - lokalny state komponentu
+```
+
+---
+
+<Image name="redux-devtools" />
+
+```notes
+- staramy się trzymać stosunkowo plaska strukture store'a
+- akcje nazywamy (i grupujemy) tak, zeby w devtoolsach latwo mozna bylo je znalezc
+```
+
+---
+
+<Video name="redux-timetravel" />
+
+---
+
+<Image name="redux-devtools-trace" />
+
+---
+
+<Image name="redux-thunk" />
+
+```notes
+ - store uzupelniamy danymi pytając API - wykorzystujemy do tego middleware thunkowe
+```
+
+---
+
+<CodeSurfer
+  code={require('!raw-loader!../snippets/fetchMiddleware')}
+  title="Redux Thunk middleware"
+  steps={[
+    {},
+    {
+      range: [2, 4],
+    },
+    {
+      range: [6, 22],
+    },
+    {
+      range: [41, 50],
+    },
+  ]}
+/>
+
+---
+
+<Image name="sass" />
+
+```notes
+- BEM, varsy w jednym pliku - zauwazamy w tym problem, o czym tez byla dyskusja na slacku
+```
+
+---
+
+<CodeSurfer
+  code={require('!raw-loader!../snippets/scssVars')}
+  language="bash"
+/>
+
+---
+
+<Image name="express" />
+
+---
+
+<CodeSurfer
+  code={require('!raw-loader!../snippets/ssr-controller')}
+  title="SSR: Express controller"
+  steps={[
+    {},
+    {
+      lines: [6],
+    },
+    {
+      range: [21, 30],
+    },
+    {
+      range: [51, 55],
+    },
+    {
+      range: [56, 65],
+    },
+    {
+      range: [67, 89],
+    },
+    {
+      range: [91, 96],
+    },
+    {
+      lines: [98],
+    },
+  ]}
+/>
+
+```notes
+- inicjalizujemy reduxowy store
+- robimy zapytanie do endpointa walidujacego,
+ktory w razie potrzeby skoryguje nam urla (np niewlasciwa nazwa hotelu wzgledem hotelCode'u)
+- jesli ktos probuje wejsc bezposrednio na mobilny konfigurator to przekierowujemy go na karte hotelu
+- uzupelniamy store o podstawowe dane - zapytanie "contentowe"
+- na srodowisku developmentowym w przypadku wyjatku wysylamy stack do klienta, na produkcji redirect do errorPage
+```
+
+---
+
+<CodeSurfer
+  code={require('!raw-loader!../snippets/ssr-renderer')}
+  title="SSR: ReactDOMServer.renderToString"
+  steps={[
+    {},
+    {
+      range: [10, 16],
+    },
+    {
+      lines: [19],
+    },
+    {
+      range: [21, 28],
+    },
+    {
+      lines: [30],
+    },
+  ]}
+/>
+
+```notes
+- renderujemy drzewko DOM za pomoca ReactDOMServer.renderToString
+- korzystamy z helmeta do utworzenia tagow <meta> w headzie, wrzucamy tam dane przychodzace z API
+```
+
+---
+
+<Image name="svgsprite" />
+
+---
+
+<CodeSurfer
+  code={require('!raw-loader!../snippets/svg-config')}
+  language="json"
+  title="svg-sprite config"
+  steps={[
+    {},
+    {
+      lines: [22],
+    },
+    {
+      range: [4, 8],
+    },
+    {
+      range: [25, 28],
+    },
+  ]}
+/>
+
+---
+
+<CodeSurfer
+  code={require('!raw-loader!../snippets/svg-template.js')}
+  title="svg-sprite template"
+  steps={[
+    {},
+    {
+      range: [6, 13],
+    },
+    {
+      range: [23, 29],
+    },
+    {
+      range: [31, 46],
+    },
+  ]}
+/>
+
+---
+
+<Image name="eslint" />
+
+---
+
+<Image name="eslint-integration" />
+
+```notes
+- mozna smialo potraktowac jako jeden z filarow testowania aplikacji
+```
+
+---
+
+<Image name="prettier" />
+
+---
+
+<Video name="prettier" />
+
+---
+
+<Image name="husky" />

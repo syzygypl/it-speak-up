@@ -1,0 +1,62 @@
+import { Appear } from 'mdx-deck';
+import { List, listTypes } from '../components/List';
+import { ListItem } from '../components/ListItem';
+import { Video } from '../components/Video';
+
+# Final thoughts
+
+---
+
+## Mistakes we've made
+
+<List type={listTypes.ul}>
+  <Appear>
+    <ListItem>Focused on performance too late in the development</ListItem>
+    <ListItem>
+      Focused on unit tests, ignored integration and e2e testing
+    </ListItem>
+    <ListItem>
+      Lack of efficient error tracking which would help us (developers) fix bugs
+      quicker
+    </ListItem>
+    <ListItem>
+      Put too much faith into the promise of backend API data being always
+      complete
+    </ListItem>
+  </Appear>
+</List>
+
+```notes
+- obserwowalismy wydajnosc dopiero gdy stala sie problemem, moglismy zalozyc pewien performance budget (np. opierajac sie o stara karte hotelu czy o strony konkurencji); teraz bolaczka sa duze pliki ze skryptami/stylami, skrypty ogrywamy dynamicznym wczytywaniem chunkow a co ze stylami? moglismy pomyslec o CSS modules albo CSS-in-JS (np. styled-components)
+- np. Sentry
+- wiele razy okazywalo sie, ze brakuje nam tekstu/obrazka/innych danych do zasilenia komponentow, a wszystko wskazywalo na to ze je dostaniemy.
+```
+
+---
+
+## Lessons we've learned
+
+<List type={listTypes.ul}>
+  <Appear>
+    <ListItem>Testing implementation details is bad</ListItem>
+    <ListItem>Write tests. Not too many. Mostly integration</ListItem>
+    <ListItem>
+      Premature optimization is bad, yet remember to write code with performance in mind
+    </ListItem>
+    <ListItem>
+      Do not blindly trust Swagger docs; make sure we're prepared for data being
+      incomplete and endpoints not being responsive
+    </ListItem>
+  </Appear>
+</List>
+
+```notes
+- testujac detale implementacyjne utrudniamy sobie refactor, daja nam mylne poczucie bezpieczenstwa (i niebezpieczenstwa), tak samo snapshoty - z czasem podczas ich aktualizacji nie skupia sie na nich wiekszej uwagi
+- sztuczne skupianie sie na procencie pokrycia testami jest bledem; testy sa kosztowne czasowo, a sporo bledow moze zostac wychwycona dzieki linterom czy statycznemu typowaniu
+- kwestia wydajnosci wprowadzona pozno w cyklu zycia projektu sprawia, ze moze sie to stac problemem trudnym (i czasochlonnym) do rozwiazania; dobra wydajnosc nie jest feature'm, jest wymaganiem
+- trzeba zakladac najgorsze - w trakcie przegladania strony userowi zabraknie internetu, backend przestanie odpowiadac lub jego odpowiedzi beda wybrakowane
+```
+
+---
+
+<Video name="success" />

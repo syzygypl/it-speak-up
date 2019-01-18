@@ -1,0 +1,31 @@
+{
+  "dest": "./src/Components/SvgAllIcons/",
+  "shape": {
+    "id": {
+      "separator": "",
+      "whitespace": "-",
+      "generator": "svg-icon-%s"
+    },
+    "transform": [
+      {
+        "svgo": {
+          "plugins": [
+            {
+              "cleanupIDs": false
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "mode": {
+    "symbol": {
+      "dest": ".",
+      "sprite": "./sprite.svg",
+      "example": {
+        "template": "./src/Components/SvgAllIcons/template.js",
+        "dest": "../../Components/SvgAllIcons/SvgAllIcons.js"
+      }
+    }
+  }
+}

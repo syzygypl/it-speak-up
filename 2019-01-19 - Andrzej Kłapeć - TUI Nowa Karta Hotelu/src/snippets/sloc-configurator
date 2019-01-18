@@ -1,0 +1,53 @@
+src/Components/ConfiguratorContent > sloc --exclude "[m|M]ock|__snapshots__|\.json" .
+
+---------- Result ------------
+
+            Physical :  5463
+              Source :  4794
+             Comment :  62
+ Single-line comment :  50
+       Block comment :  12
+               Mixed :  3
+ Empty block comment :  0
+               Empty :  610
+               To Do :  0
+
+Number of files read :  80
+
+----------------------------
+
+src/Redux/Actions/Configurator > sloc --exclude "[m|M]ock" .
+
+---------- Result ------------
+
+            Physical :  2629
+              Source :  2240
+             Comment :  58
+ Single-line comment :  49
+       Block comment :  9
+               Mixed :  1
+ Empty block comment :  0
+               Empty :  332
+               To Do :  0
+
+Number of files read :  14
+
+----------------------------
+
+src/Redux/Reducers/Configurator > sloc --exclude "[m|M]ock" .
+
+---------- Result ------------
+
+            Physical :  2895
+              Source :  2546
+             Comment :  7
+ Single-line comment :  7
+       Block comment :  0
+               Mixed :  1
+ Empty block comment :  0
+               Empty :  343
+               To Do :  0
+
+Number of files read :  29
+
+----------------------------

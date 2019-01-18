@@ -1,0 +1,185 @@
+{
+  template: {
+    slots: [
+      {
+        name: 'topContent',
+        components: [
+          {
+            name: 'LOCATION',
+            options: {
+              'location.usp.icon': 'confirm',
+              'location.header.icon': 'Polożenie',
+              'header.icon': 'home',
+              'tripadvisor.show': 'true',
+            },
+          },
+          {
+            name: 'SHOW_ON_MAP',
+          },
+        ],
+      },
+      {
+        name: 'topRightSidebar',
+        components: [
+          {
+            name: 'PRICE',
+          },
+          {
+            name: 'PRICE_INCLUDES',
+          },
+          {
+            name: 'HOTEL_RATINGS',
+            options: {
+              'hotel.rating.limit': '4',
+            },
+          },
+        ],
+      },
+      {
+        name: 'middle',
+        components: [
+          {
+            name: 'TRIP_ADVISOR',
+          },
+          {
+            name: 'CONFIGURATOR',
+          },
+        ],
+      },
+      {
+        name: 'bottomContent',
+        components: [
+          {
+            name: 'HOTEL_ATTRIBUTE',
+            options: {
+              'plaza_lezaki.icon': 'entertainment',
+              'animacja_pl.icon': 'entertainment',
+              'header.title': 'Najpopularniejsze udogodnienia',
+              'pok_rodz.icon': 'family',
+              'tripAdvisorAward.icon': 'tripadvisor-certificate',
+              'plac_zabaw.icon': 'star',
+              'bezplatne-wifi.icon': 'wifi',
+              'bezp_basen.icon': 'wave',
+              'oddzielna-sypialnia.icon': 'room',
+            },
+          },
+          {
+            name: 'PLANE_SEATS',
+            options: {
+              'plane.seats.icon':
+                'https://r.dcs.redcdn.pl/file/o2/TUI/9861327814686.jpg',
+              'plane.seats.title': 'Rezerwacja miejsc w samolocie',
+              'plane.seats.description':
+                'Teraz na wybranych rejsach czarterowych możesz',
+            },
+          },
+          {
+            name: 'TRIP_ADVISOR_FULL',
+            options: {
+              'header.title': 'Opinie gości',
+              'header.icon': 'travel-experts',
+            },
+          },
+          {
+            name: 'HOTEL',
+            options: {
+              'header.title': 'Hotel',
+              'header.icon': 'hotel',
+            },
+          },
+          {
+            name: 'IMPORTANT_INFORMATION',
+            options: {
+              'travelConditions.label': 'Warunki podróży',
+              'header.title': 'Ważne informacje',
+              'header.icon': 'tool-tip',
+            },
+          },
+          {
+            name: 'FACULTATIVE_TRIPS',
+            options: {
+              'header.title': 'Wycieczki fakultatywne',
+            },
+          },
+          {
+            name: 'FOOD',
+            options: {
+              'header.title': 'Wyżywienie',
+              'header.icon': 'food',
+            },
+          },
+          {
+            name: 'ROOMS',
+            options: {
+              'header.title': 'Pokoje',
+              'header.icon': 'room',
+            },
+          },
+          {
+            name: 'REGION',
+            options: {
+              'header.title': 'Region',
+              'header.icon': 'world',
+            },
+          },
+          {
+            name: 'ACCOMMODATION',
+            options: {
+              'header.title': 'Zakwaterowanie',
+              'header.icon': 'hotel',
+            },
+          },
+          {
+            name: 'WEATHER',
+            options: {
+              'header.title': 'Pogoda',
+              'header.icon': 'sun',
+              'nighttemp.icon': 'night',
+              'rainfall.icon': 'cloud-rain',
+              'watertemp.icon': 'wave',
+              'daytemp.icon': 'sun',
+              'header.subtitle': 'Średnia pogoda w ciągu roku',
+              'sunnyhours.icon': 'clock',
+            },
+          },
+          {
+            name: 'NEARBY_PLACES',
+            options: {
+              'header.title': 'Otoczenie obiektu',
+            },
+          },
+          {
+            name: 'TOP_REASONS',
+            options: {
+              'header.title': 'Dlaczego warto wybrać {hotelName}',
+              'usp.icon': 'top_reasons_bullet',
+            },
+          },
+        ],
+      },
+      {
+        name: 'bottomRightSidebar',
+        components: [
+          {
+            name: 'PRICE',
+          },
+        ],
+      },
+      {
+        name: 'titleContent',
+        components: [
+          {
+            name: 'TITLE_DATA',
+            options: {
+              'share.icon.hotel-page-fb': 'facebook',
+              'share.icon.hotel-page-email': 'mail',
+              'wishlist.label': 'Dodaj do ulubionych',
+              'share.icon.hotel-page-msn': 'messenger',
+              'share.label': 'Udostępnij',
+            },
+          },
+        ],
+      },
+    ],
+  },
+};

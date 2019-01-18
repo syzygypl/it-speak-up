@@ -1,0 +1,18 @@
+> sloc --exclude "node_modules|build|.storybook|coverage|__snapshots__ \
+|SvgAllIcons.js|\.svg|\.css|\.json|[m|M]ock" .
+
+---------- Result ------------
+
+            Physical :  44972
+              Source :  39163
+             Comment :  640
+ Single-line comment :  431
+       Block comment :  209
+               Mixed :  170
+ Empty block comment :  0
+               Empty :  5339
+               To Do :  6
+
+Number of files read :  825
+
+----------------------------

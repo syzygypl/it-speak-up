@@ -1,0 +1,210 @@
+import { CodeSurfer } from 'mdx-deck-code-surfer';
+import { Image } from '../components/Image';
+import { Video } from '../components/Video';
+
+# Problems
+
+```notes
+- brak gzipa
+- pozne wprowadzenie Continuous Deployment w etapie developmentu
+- oprócz tego: (nastepne slajdy)
+```
+
+---
+
+## Page parts
+
+---
+
+<CodeSurfer
+  code={require('!raw-loader!../snippets/slots-api')}
+  language="json"
+  title="/hotel-cards/hotels"
+  steps={[
+    {},
+    {
+      range: [2, 20],
+    },
+    {
+      lines: [5],
+    },
+    {
+      range: [7, 15],
+    },
+  ]}
+/>
+
+---
+
+<CodeSurfer
+  code={require('!raw-loader!../snippets/slots-selector')}
+  title="Page parts: selector"
+  steps={[
+    {},
+    {
+      lines: [2, 8],
+    },
+    {
+      range: [11, 19],
+    },
+  ]}
+/>
+
+```notes
+- reselect pozwala nam na tworzenie memoizowanych selektorow, nie wykonuja one obliczen potrzebnych dla zworcenia wycinka store'a w okreslonym ksztalcie jesli dane wejsciowe sa te same jak w poprzednim ich wywolaniu
+```
+
+---
+
+<CodeSurfer code={require('!raw-loader!../snippets/slots-expected')} />
+
+---
+
+<CodeSurfer
+  code={require('!raw-loader!../snippets/slots-selector')}
+  title="Page parts: selector"
+  steps={[
+    {
+      range: [11, 19],
+    },
+  ]}
+/>
+
+---
+
+<CodeSurfer
+  code={require('!raw-loader!../snippets/slots-pagepart')}
+  title="Page parts: PagePartToComponent"
+  steps={[
+    {},
+    {
+      range: [4, 25],
+    },
+    {
+      range: [27, 50],
+    },
+    {
+      range: [52, 60],
+    },
+  ]}
+/>
+
+---
+
+<CodeSurfer
+  code={require('!raw-loader!../snippets/slots-page')}
+  steps={[{}, { lines: [3, 12, 18] }]}
+/>
+
+---
+
+## Configurator
+
+---
+
+<Image name="configurator" />
+
+---
+
+<CodeSurfer
+  code={require('!raw-loader!../snippets/sloc-configurator')}
+  title="Total SLOC: 9580"
+  lang="bash"
+/>
+
+---
+
+<CodeSurfer
+  code={require('!raw-loader!../snippets/configurator-urls')}
+  steps={[
+    {
+      range: [4, 10],
+    },
+  ]}
+/>
+
+```notes
+- skomplikowana struktura danych przychodzacych z backendu, mnogosc zapytan
+- mnogosc wariantow konfiguracji - w zaleznosci od typu wycieczek
+```
+
+---
+
+<Image name="configurator-participants" />
+
+---
+
+<Image name="configurator-rooms" />
+
+```notes
+- dwa osobne konfiguratory mobile/desktop
+- konfigurator mobilny - "minimalistyczne" zalozenia poczatkowe i kryteria akceptacyjne, funkcjonalnosci zmieniajace core'owe mechanizmy wprowadzone na poznym etapie prac
+- trudnosc w testowaniu, testy jednostkowe nie daja nam bezpieczenstwa (o czym przekonalismy sie niejednokrotnie)
+```
+
+---
+
+## Testing
+
+---
+
+<Image name="jest" />
+
+---
+
+<CodeSurfer
+  code={require('!raw-loader!../snippets/test-count')}
+  language="bash"
+/>
+
+---
+
+<CodeSurfer
+  code={require('!raw-loader!../snippets/test-implementation')}
+  steps={[
+    {},
+    {
+      range: [2, 4],
+    },
+    {
+      lines: [6],
+    },
+    {
+      range: [8, 9],
+    },
+  ]}
+/>
+
+```notes
+- jednym z problemow jaki dostrzeglismy po jakims czasie, gdy w kodzie wprowadzalismy zmiany, jest testowanie detali implementacyjnych, co sprawilo ze nasze testy sa bardzo wrazliwe na nawet male zmiany w kodzie
+- refactor -> bledne wskazanie niebezpieczenstwa lub bledne zapewnienie bezpieczenstwa
+- na przyszlosc: react-testing-library, ktory nie jest zlotym srodkiem ale wymusza pewne konwencje
+```
+
+---
+
+<Image name="unit-testing" extension="gif" />
+
+Unit testers be like: “Looks like it’s working”
+
+---
+
+### Snapshots
+
+---
+
+<Image name="kentcdodds-snapshots" />
+
+---
+
+> They are generated files, and **developers tend to be undisciplined about
+> scrutinizing generated files before committing them**, if not at first then
+> definitely over time. Most developers, upon seeing a snapshot test fail, will
+> sooner just nuke the snapshot and record a fresh passing one instead of
+> agonizing over what broke it.
+
+[- Justin Searls](https://twitter.com/searls/status/919594505938112512)
+
+---
+
+<Video name="snapshots" />

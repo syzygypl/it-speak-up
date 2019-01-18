@@ -1,0 +1,45 @@
+import { CodeSurfer } from 'mdx-deck-code-surfer';
+import { Image } from '../components/Image';
+
+# Introduction
+
+---
+
+<Image name="nkh" />
+
+```notes
+- odpowiedzialni za frontend, ostatecznie za sprawą SSRa też za serwer node'owy
+- backend: Enginiety, komunikacja za pośrednictwem typowego JSON REST API
+- aplikacja frontendowa pisana od zera, dowolność w wyborze technologii
+- RWD, mobile first
+- pierwszy commit 14 marca
+- wdrożenie produkcyjne 30 października
+
+```
+
+---
+
+<CodeSurfer code={require('!raw-loader!../snippets/gitcommits')} lang="bash" />
+
+```notes
+Liczba commitów
+```
+
+---
+
+<CodeSurfer
+  code={require('!raw-loader!../snippets/pullrequests')}
+  lang="bash"
+/>
+
+```notes
+Liczba PR-ów
+```
+
+---
+
+<CodeSurfer code={require('!raw-loader!../snippets/sloc')} lang="bash" />
+
+```notes
+Liczba linii kodu
+```

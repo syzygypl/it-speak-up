@@ -1,0 +1,9 @@
+@font-face {
+  font-family: 'tui';
+  src: url('%PUBLIC_URL%/fonts/TUITypeLt_LATN_W_Rg.eot');
+  src: url('%PUBLIC_URL%/fonts/TUITypeLt_LATN_W_Rg.woff') format('woff'),
+    url('%PUBLIC_URL%/fonts/TUITypeLt_LATN_W_Rg.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
