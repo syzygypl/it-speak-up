@@ -1,0 +1,433 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>reveal.js</title>
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/night.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/monokai.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section id='Title'>
+          <h1>Kubernetes*</h1>
+          <p>by TL</p>
+          <p style="font-size:0.4em;text-align: right;">*YMMV</p>
+        </section>
+        <section id='Agenda'>
+          <section id='Agenda_0'>
+            <h2>Agenda</h2>
+          </section>
+          <section id='Agenda_1'>
+            <ol>
+              <li class="fragment fade-up" data-fragment-index="0">
+                <h4>Terminology</h4>
+                <p>What's what in Kubernetes</p>
+              </li>
+              <li class="fragment fade-up" data-fragment-index="1">
+                <h4>Architecture</h4>
+                <p>What are the pieces and how they connect</p>
+              </li>
+              <li class="fragment fade-up" data-fragment-index="2">
+                <h4>Master</h4>
+                <p>What orchestrates</p>
+              </li>
+            </ol>
+          </section>
+          <section id='Agenda_2'>
+            <ol start=4>
+              <li class="fragment fade-up" data-fragment-index="0">
+                <h4>Node</h4>
+                <p>What is orechestrated<p>
+              </li>
+              <li class="fragment fade-up" data-fragment-index="1">
+                <h4>Deplyoment</h4>
+                <p>What are apps</p>
+              </li>
+              <li class="fragment fade-up" data-fragment-index="2">
+                <h4>Pod</h4>
+                <p>Where are my containers</p>
+              </li>
+            <ol>
+          </section>
+          <section id='Agenda_3'>
+            <ol start=7>
+              <li class="fragment fade-up" data-fragment-index="0">
+                <h4>Service</h4>
+                <p>How to access my app<p>
+              </li>
+              <li class="fragment fade-up" data-fragment-index="1">
+                <h4>Storage</h4>
+                <p>Where to persist data</p>
+              </li>
+              <li class="fragment fade-up" data-fragment-index="2">
+                <h4>Deploying</h4>
+                <p>How to</p>
+              </li>
+            <ol>
+          </section>
+          <section id="Agenda_4">
+            <ol start=12>
+              <li class="fragment fade-up" data-fragment-index="0">
+                <h4>Secrets</h4>
+                <p>How to keep yours</p>
+              </li>
+              <li class="fragment fade-up" data-fragment-index="1">
+                <h4>Cron</h4>
+                <p>Why not do it on k8s</p>
+              </li>
+              <li class="fragment fade-up" data-fragment-index="2">
+                <h4>QA</h4>
+              </li>
+            </ol>
+          </section>
+        </section>
+        <section id="Terminology">
+          <section id='Terminology_0'>
+              <h4>Terminology</h4>
+          </section>
+          <section id='Terminology_1'>
+              <ul>
+                <li class="fragment fade-up" data-fragment-index="0">Master - node that takes care of scheduling</li>
+                <li class="fragment fade-up" data-fragment-index="1">Worker - node that pods run on</li>
+                <li class="fragment fade-up" data-fragment-index="2">Namespace - "Folder" for deployments</li>
+                <li class="fragment fade-up" data-fragment-index="3">Deployment - configured set of pods</li>
+                <li class="fragment fade-up" data-fragment-index="4">Pod - a set of containers working together</li>
+                <li class="fragment fade-up" data-fragment-index="5">Service - Entrypoint for deployment</li>
+                <li class="fragment fade-up" data-fragment-index="6">NodePort - Port on which a service is accessible</li>
+              </ul>
+          </section>
+          <section id='Terminology_2'>
+            <ul>
+              <li class="fragment fade-up" data-fragment-index="0">ClusterIP - Ip a service is available on internally</li>
+              <li class="fragment fade-up" data-fragment-index="1">PersistentVolume - Disk resource</li>
+              <li class="fragment fade-up" data-fragment-index="2">PersistentVolumeClaim - Disk mount</li>
+              <li class="fragment fade-up" data-fragment-index="3">Secret - encoded/encrypted set of data</li>
+            </ul>
+          </section>
+        </section>
+        <section id='Architecture'>
+          <section id='Architecture_0'>
+              <h4>Architecture</h4>
+          </section>
+          <section id='Architecture_1'>
+            <p>Basic architecture</p>
+            <img src="assets/arch.jpg" alt="Architecture" style="width: 75%; height: 75%;">
+          </section>
+          <section id='Architecture_2'>
+            <p>Client flow</p>
+            <img src="assets/nodeport.png" style="width: 50%;" alt="Client flow">
+          </section>
+        </section>
+        <section id='Master'>
+          <section id='Master_0'>
+            <h4>Master</h4>
+          </section>
+          <section id='Master_1'>
+            <p>The brain of kubernetes</p>
+          </section>
+          <section id='Master_2'>
+            <p class="fragment fade-up" data-fragment-index="0">Most of orchestration is done here.</p>
+            <p class="fragment fade-up" data-fragment-index="1">Without it deployments don't work.</p>
+            <p class="fragment fade-up" data-fragment-index="2">Does both scheduling and communication</p>
+            <p class="fragment fade-up" data-fragment-index="3">Has maaaany components</p>
+          </section>
+        </section>
+        <section id='Node'>
+          <section id='Node_0'>
+            <h4>Node</h4>
+          </section>
+          <section id='Node_1'>
+            <p class="fragment fade-up" data-fragment-index="0">Work horse of kubernetes</p>
+            <p class="fragment fade-up" data-fragment-index="1">Everything that users see run here</p>
+            <p class="fragment fade-up" data-fragment-index="2">Can be scaled to really sick numbers (~2k nodes max as of 1.14)</p>
+            <p class="fragment fade-up" data-fragment-index="3">Continues to run when masters die</p>
+          </section>
+        </section>
+        <section id='Deployment'>
+          <section id='Deployment_0'>
+            <h4>Deployment</h4>
+          </section>
+          <section id='Deployment_1'>
+            <p class="fragment fade-up" data-fragment-index="0">Configured via YAML</p>
+            <p class="fragment fade-up" data-fragment-index="1">Complete set of elements to run app</p>
+            <p class="fragment fade-up" data-fragment-index="2">Can be scaled on multiple levels</p>
+          </section>
+          <section id='Deployment_2'>
+            <pre>
+              <code class='hljs' style="font-size: 60%; line-height: 1.1em;">#yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: front-prod
+  namespace: "${NAMESPACE}"
+  labels:
+    app: "front-${APP_ENV}"
+spec:
+  selector:
+    matchLabels:
+      app: "front-${APP_ENV}"
+  replicas: 4
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: "front-${APP_ENV}"
+    spec:
+      imagePullSecrets:
+        - name: regcred
+      containers:
+      - image: "bpp/front:${BUILD_NUMBER}"
+        imagePullPolicy: Always
+        name: "front-${APP_ENV}"
+        env:
+        - name: APP_ENV
+          value: "${APP_ENV}"
+        livenessProbe:
+          httpGet:
+            path: /app/status
+            port: 4000
+          initialDelaySeconds: 60
+          periodSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /app/status
+            port: 4000
+          initialDelaySeconds: 60
+          periodSeconds: 5
+              </code>
+            </pre>
+          </section>
+        </section>
+        <section id='Pod'>
+          <section id='Pod_0'>
+            <h4>Pod</h4>
+          </section>
+          <section id='Pod_1'>
+            <p class="fragment fade-up" data-fragment-index="0">One or more containers with shared storage/network</p>
+            <p class="fragment fade-up" data-fragment-index="1">Logical "whole"</p>
+            <p class="fragment fade-up" data-fragment-index="2">See each other via localhost and share port space</p>
+            <p class="fragment fade-up" data-fragment-index="3">F.e. nginx + php-fpm in split containers</p>
+          </section>
+        </section>
+        <section id='Service'>
+          <section id='Service_0'>
+            <h4>Service</h4>
+          </section>
+          <section id='Service_1'>
+            <p class="fragment fade-up" data-fragment-index="0">Used to access deployment</p>
+            <p class="fragment fade-up" data-fragment-index="1">Has different types</p>
+            <p class="fragment fade-up" data-fragment-index="2">We use nodeport as we're lazy</p>
+          </section>
+          <section id='Service_2'>
+            <pre>
+              <code class='hljs' style="font-size: 60%; line-height: 1.1em;">#yaml
+apiVersion: v1
+kind: Service
+metadata:  
+  name: "front-${APP_ENV}"
+spec:
+  selector:    
+    app: "front-${APP_ENV}"
+  type: NodePort
+  ports:  
+  - name: http
+    port: 8000
+    nodePort: 31000
+    protocol: TCP
+              </code>
+            </pre>
+          </section>
+        </section>
+        <section id='Storage'>
+          <section id='Storage_0'>
+            <h4>How to Storage?</h4>
+          </section>
+          <section id='Storage_1'>
+            <p class="fragment fade-up" data-fragment-index="0">It's complicated</p>
+            <p class="fragment fade-up" data-fragment-index="1">There are multiple providers</p>
+            <p class="fragment fade-up" data-fragment-index="2">Hard to do it yourself</p>
+          </section>
+          <section id='Storage_2'>
+            <pre>
+              <code class='hljs' style="font-size: 60%; line-height: 1.1em;">#yaml
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: glusterfs
+  namespace: dev
+subsets:
+- addresses:
+  - ip: 10.10.10.11
+  - ip: 10.10.10.12
+  - ip: 10.10.10.21
+  ports:
+  - port: 1
+    protocol: TCP
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: glusterfs
+  namespace: dev
+spec:
+  accessModes:
+  - ReadWriteMany
+  capacity:
+    storage: 500Gi
+  glusterfs:
+    endpoints: glusterfs
+    path: gluster
+  persistentVolumeReclaimPolicy: Retain
+  volumeMode: Filesystem
+              </code>
+            </pre>
+          </section>
+          <section id='Storage_2'>
+            <pre>
+              <code class='hljs' style="font-size: 60%; line-height: 1.1em;">#yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-pv-claim
+  namespace: dev
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 500Gi
+              </code>
+            </pre>
+          </section>
+        </section>
+        <section id='Deploying'>
+          <section id='Deploying_0'>
+            <h4>Deploying</h4>
+          </section>
+          <section id='Deploying_1'>
+            <p class="fragment fade-up" data-fragment-index="0">As easy as kubectl apply -f my.yaml</p>
+            <p class="fragment fade-up" data-fragment-index="1">It's done automagically using your recipe</p>
+            <p class="fragment fade-up" data-fragment-index="2">Almost without issues ;)</p>
+          </section>
+        </section>
+        <section id='Secrets'>
+          <section id='Secrets_0'>
+            <h4>Secrets</h4>
+          </section>
+          <section id='Secrets_1'>
+            <p class="fragment fade-up" data-fragment-index="0">Used to deliver secret configs to pods</p>
+            <p class="fragment fade-up" data-fragment-index="1">Normally it's encoded not encrypted</p>
+            <p class="fragment fade-up" data-fragment-index="2">Useful but PITA to use properly</p>
+          </section>
+          <section id='Secrets_2'>
+            <p>Advanced example</p2>
+          </section>
+          <section id='Secrets_3'>
+            <pre><code class="hljs" data-line-numbers>#yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: auth-token-secret
+type: Opaque
+data:
+  AUTH_TOKEN_VALUE: eHh4LXh4eC14eHg=
+            </code></pre>
+          </section>
+          <section id='Secrets_3'>
+            <p>Secrets as envs</p>
+            <pre><code class="hljs" data-line-numbers>#yaml
+env:
+- name: auth-token-secret
+   valueFrom:
+      secretKeyRef:
+         name: mysecret
+         key: tomcat-pass
+            </code></pre>
+          </section>
+        </section>
+        <section id='Cron'>
+          <section id='Cron_0'>
+            <h4>Cron</h4>
+          </section>
+          <section id='Cron_1'>
+            <p class="fragment fade-up" data-fragment-index="0">Specific resource type is used cronjobs.batch</p>
+            <p class="fragment fade-up" data-fragment-index="1">One resource per job == inefficient</p>
+            <p class="fragment fade-up" data-fragment-index="2">Format is similar to crontab</p>
+          </section>
+          <section id='Cron_2'>
+            <p>Example</p2>
+          </section>
+          <section id='Cron_3'>
+            <pre><code class="hljs" data-line-numbers>#yaml
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: hello
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: hello
+            image: busybox
+            args:
+            - /bin/sh
+            - -c
+            - date; echo Hello from the Kubernetes cluster
+          restartPolicy: OnFailure
+</code></pre>
+          </section>
+        </section>
+        <section id='QA'>
+          <h4>QA</h4>
+        </section>
+
+      </div>
+    </div>
+
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+        slideNumber: true,
+        hash: true,
+        history: true,
+        width: 960,
+        height: 700,
+        navigationMode: "linear",
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true }
+        ]
+      });
+    </script>
+  </body>
+</html>
